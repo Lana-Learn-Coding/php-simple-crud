@@ -1,5 +1,7 @@
 <?php
 include 'database/connection.php';
+include 'upload_file.php';
+
 if (!isset($_GET["id"])) {
     die("invalid");
 }
@@ -11,9 +13,17 @@ if (isset($_POST["submit"])) {
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
     $created_at = date("Y-m-d");
     try {
+        if (isset($_POST["image_link"])) {
+            $image = upload_file('image');
+            if (!$image) {
+                $image = $_POST["image_link"];
+            } else {
+                delete_uploaded_file($_POST["image_link"]);
+            }
+        }
         $db
             ->prepare("UPDATE product SET "
-                . "name = '$name', status = $status, created_at = '$created_at', "
+                . "name = '$name', status = $status, created_at = '$created_at', image = '$image', "
                 . "price = $price, description = '$description', category_id = $category_id"
                 . " WHERE id = " . $_GET["id"])
             ->execute();

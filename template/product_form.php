@@ -1,4 +1,4 @@
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
     <table>
         <?php if (isset($product)) { ?>
             <tr>
@@ -37,6 +37,13 @@
             <td><label for="status">show</label></td>
             <td>
                 <input type="checkbox" id="status" name="status" <?php echo isset($product) ? ($product['status'] ? 'checked' : '') : 'checked' ?>>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="image">image</label></td>
+            <td>
+                <input type="file" id="image" name="image" accept="image/*">
+                <?php $image = $product['image']; if (isset($product) && $product['image']) echo "<input type=\"hidden\" name=\"image_link\" value=\"$image\">" ?>
             </td>
         </tr>
         <tr>

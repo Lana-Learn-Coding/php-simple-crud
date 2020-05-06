@@ -31,6 +31,7 @@ $products = $db->query(
                 <th>price</th>
                 <th>category</th>
                 <th>description</th>
+                <th>image</th>
                 <th>status</th>
                 <th>created at</th>
                 <th>action</th>
@@ -43,6 +44,7 @@ $products = $db->query(
                     <td><?php echo $product['price'] ?></td>
                     <td><?php echo $product['category'] ? $product['category'] : 'uncategorized' ?></td>
                     <td><?php echo $product['description'] ?></td>
+                    <td><?php echo $product['image'] ?></td>
                     <td><?php echo $product['status'] ? 'show' : 'hide' ?></td>
                     <td><?php echo $product['created_at'] ?></td>
                     <td>

@@ -1,13 +1,20 @@
 <?php
 include 'database/connection.php';
+include 'upload_file.php';
+
 $categories = $db->query('SELECT * FROM category WHERE status = 1')->fetchAll();
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
+    $price = $_POST["price"];
+    $category_id = $_POST["category"] ? $_POST["category"] : "NULL";
+    $description = $_POST["description"];
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
     $created_at = date("Y-m-d");
     try {
+        $image = upload_file('image');
         $db
-            ->prepare("INSERT INTO product(name, status, created_at) VALUES('$name', $status, '$created_at')")
+            ->prepare("INSERT INTO product(name, price, status, description, category_id, image, created_at) "
+                . "VALUES ('$name', $price ,$status, '$description', $category_id, '$image','$created_at')")
             ->execute();
     } catch (Exception $e) {
         $error = 'create failed';
