@@ -1,6 +1,3 @@
-<?php
-?>
-
 <form method="POST">
     <table>
         <?php if (isset($category)) { ?>
