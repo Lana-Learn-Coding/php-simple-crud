@@ -1,6 +1,4 @@
 <?php
-ob_start();
-session_start();
 include 'database/connection.php';
 if (!isset($_GET["id"])) {
     die("invalid");
@@ -15,7 +13,7 @@ if (isset($_POST["submit"])) {
     $created_at = date("Y-m-d");
     try {
         $db
-            ->prepare("INSERT INTO category(name, status, created_at) VALUES('$name', $status, '$created_at')")
+            ->prepare("UPDATE category SET name = '$name', status = $status, created_at = '$created_at' WHERE id = " . $_GET["id"])
             ->execute();
     } catch (Exception $e) {
         $error = 'update failed';
