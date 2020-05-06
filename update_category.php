@@ -3,10 +3,6 @@ include 'database/connection.php';
 if (!isset($_GET["id"])) {
     die("invalid");
 }
-$category = $db->query("SELECT * FROM category WHERE id = " . $_GET["id"])->fetch();
-if (!$category) {
-    die("not found");
-}
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
@@ -18,6 +14,10 @@ if (isset($_POST["submit"])) {
     } catch (Exception $e) {
         $error = 'update failed';
     }
+}
+$category = $db->query("SELECT * FROM category WHERE id = " . $_GET["id"])->fetch();
+if (!$category) {
+    die("not found");
 }
 ?>
 
