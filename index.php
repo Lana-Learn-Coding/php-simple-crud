@@ -1,7 +1,5 @@
 <?php
 include 'database/connection.php';
-ob_start();
-session_start();
 $categories = $db->query('SELECT * FROM category;')->fetchAll();
 ?>
 
@@ -37,8 +35,8 @@ $categories = $db->query('SELECT * FROM category;')->fetchAll();
                     <td><?php echo $category['status'] ? 'show' : 'hide' ?></td>
                     <td><?php echo $category['created_at'] ?></td>
                     <td>
-                        <a href="update_category.php?id=<?php echo $category['id'] ?>">edit</a>
-                        <a href="delete_category.php?id=<?php echo $category['id'] ?>" onclick="return confirm('are you sure')">delete</a>
+                        <a href="update_category.php?type=category&id=<?php echo $category['id'] ?>">edit</a>
+                        <a href="delete.php?type=category&id=<?php echo $category['id'] ?>" onclick="return confirm('are you sure')">delete</a>
                     </td>
                 </tr>
             <?php } ?>

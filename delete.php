@@ -1,8 +1,8 @@
 <?php
 include 'database/connection.php';
-if (isset($_GET["id"])) {
+if (isset($_GET["id"]) && isset($_GET["type"])) {
     try {
-        $db->prepare('DELETE FROM category WHERE id = ' . $_GET["id"])->execute();
+        $db->prepare('DELETE FROM ' . $_GET["type"] . ' WHERE id = ' . $_GET["id"])->execute();
     } catch (Exception $e) {
         // not found
     }
