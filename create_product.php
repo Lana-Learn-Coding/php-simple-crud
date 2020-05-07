@@ -9,7 +9,7 @@ if (isset($_POST["submit"])) {
     $category_id = $_POST["category"] ? $_POST["category"] : "NULL";
     $description = $_POST["description"];
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
-    $created_at = date("Y-m-d");
+    $created_at = date("Y-m-d H:i:s");
     try {
         $image = upload_file('image');
         $db

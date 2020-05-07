@@ -3,7 +3,7 @@ include 'database/connection.php';
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
-    $created_at = date("Y-m-d");
+    $created_at = date("Y-m-d H:i:s");
     try {
         $db
             ->prepare("INSERT INTO category(name, status, created_at) VALUES('$name', $status, '$created_at')")

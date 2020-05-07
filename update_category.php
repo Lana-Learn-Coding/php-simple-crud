@@ -6,7 +6,7 @@ if (!isset($_GET["id"])) {
 if (isset($_POST["submit"])) {
     $name = $_POST["name"];
     $status = (isset($_POST["status"]) && $_POST["status"]) ? 1 : 0;
-    $created_at = date("Y-m-d");
+    $created_at = date("Y-m-d H:i:s");
     try {
         $db
             ->prepare("UPDATE category SET name = '$name', status = $status, created_at = '$created_at' WHERE id = " . $_GET["id"])
